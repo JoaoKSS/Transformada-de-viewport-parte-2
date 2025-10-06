@@ -28,17 +28,17 @@
 	</reta>
 
 
-	<poligono cor="red">
+	<poligono cor="Aqua">
 		<ponto x="6.0" y="5.0"/>
 		<ponto x="16.0" y="5.0"/>
 		<ponto x="11.0" y="14.0"/>
 	</poligono>
 
-	<!--
-	<reta cor="blue">
+	
+	<reta cor="Gold">
 		<ponto x="2.0" y="1.0"/>
 		<ponto x="16.0" y="5.0"/>
 	</reta>
-	-->
+	
 
 </dados>
