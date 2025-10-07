@@ -13,29 +13,29 @@
 		<wmax x="10.0" y="7.5"/>
 	</window>
 
-	<ponto cor="black" x="0.5" y="2"/>
-	<ponto cor="black" x="2" y="4"/>
-	<ponto cor="black" x="4" y="6"/>
+	<ponto cor="Light Coral" x="0.5" y="2"/>
+	<ponto cor="Light Coral" x="2" y="4"/>
+	<ponto cor="Light Coral" x="4" y="6"/>
 
-	<reta cor="blue">
+	<reta cor="Light Blue">
 		<ponto x="2" y="2"/>
 		<ponto x="4" y="4"/>
 	</reta>
 
-	<reta cor="green">
+	<reta cor="Light Blue">
 		<ponto x="4" y="4"/>
 		<ponto x="2" y="6"/>
 	</reta>
 
 
-	<poligono cor="Aqua">
+	<poligono cor="Light Coral">
 		<ponto x="6.0" y="5.0"/>
 		<ponto x="16.0" y="5.0"/>
 		<ponto x="11.0" y="14.0"/>
 	</poligono>
 
 	
-	<reta cor="Gold">
+	<reta cor="Teal">
 		<ponto x="2.0" y="1.0"/>
 		<ponto x="16.0" y="5.0"/>
 	</reta>
