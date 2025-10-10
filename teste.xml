@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<dados>
+    <viewport>
+        <vpmin x="0" y="0"/>
+        <vpmax x="800" y="600"/>
+    </viewport>
+
+    <!-- Window com mesma razão 4:3 e bem menor que a amplitude das retas para forçar muito clipping -->
+    <window>
+        <wmin x="-100.0" y="-75.0"/>
+        <wmax x="100.0" y="75.0"/>
+    </window>
+
+    <!-- Pontos de referência -->
+    <ponto cor="Light Coral" x="-90" y="-65"/>
+    <ponto cor="Light Coral" x="0" y="0"/>
+    <ponto cor="Light Coral" x="90" y="65"/>
+
+    <!-- Grupo A: retas muito longas cruzando a window (stress geral) -->
+    <reta cor="Teal"><ponto x="-300" y="-200"/><ponto x="300" y="200"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="-180"/><ponto x="300" y="180"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="-160"/><ponto x="300" y="160"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="-140"/><ponto x="300" y="140"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="-120"/><ponto x="300" y="120"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="-100"/><ponto x="300" y="100"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="-80"/><ponto x="300" y="80"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="-60"/><ponto x="300" y="60"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="-40"/><ponto x="300" y="40"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="-20"/><ponto x="300" y="20"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="0"/><ponto x="300" y="0"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="20"/><ponto x="300" y="20"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="40"/><ponto x="300" y="40"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="60"/><ponto x="300" y="60"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="80"/><ponto x="300" y="80"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="100"/><ponto x="300" y="100"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="120"/><ponto x="300" y="120"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="140"/><ponto x="300" y="140"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="160"/><ponto x="300" y="160"/></reta>
+    <reta cor="Teal"><ponto x="-300" y="180"/><ponto x="300" y="180"/></reta>
+
+    <!-- Grupo B: verticais longas (inclui paralelas às bordas) -->
+    <reta cor="Orange"><ponto x="-200" y="-300"/><ponto x="-200" y="300"/></reta>   <!-- totalmente fora -->
+    <reta cor="Orange"><ponto x="-120" y="-300"/><ponto x="-120" y="300"/></reta>   <!-- corta pela esquerda -->
+    <reta cor="Orange"><ponto x="-100" y="-300"/><ponto x="-100" y="300"/></reta>   <!-- colinear com x_min -->
+    <reta cor="Orange"><ponto x="0" y="-300"/><ponto x="0" y="300"/></reta>         <!-- atravessa centro -->
+    <reta cor="Orange"><ponto x="100" y="-300"/><ponto x="100" y="300"/></reta>     <!-- colinear com x_max -->
+    <reta cor="Orange"><ponto x="120" y="-300"/><ponto x="120" y="300"/></reta>     <!-- corta pela direita -->
+    <reta cor="Orange"><ponto x="200" y="-300"/><ponto x="200" y="300"/></reta>     <!-- totalmente fora -->
+
+    <!-- Grupo C: horizontais e quase horizontais perto das bordas (testa paralelismo e precisão) -->
+    <reta cor="Purple"><ponto x="-400" y="-75.0"/><ponto x="400" y="-75.0"/></reta>   <!-- colinear com y_min -->
+    <reta cor="Purple"><ponto x="-400" y="-74.999"/><ponto x="400" y="-74.999"/></reta> <!-- quase colinear (dentro) -->
+    <reta cor="Purple"><ponto x="-400" y="-75.001"/><ponto x="400" y="-75.001"/></reta> <!-- quase colinear (fora) -->
+    <reta cor="Purple"><ponto x="-400" y="75.0"/><ponto x="400" y="75.0"/></reta>     <!-- colinear com y_max -->
+    <reta cor="Purple"><ponto x="-400" y="74.999"/><ponto x="400" y="74.999"/></reta>
+    <reta cor="Purple"><ponto x="-400" y="75.001"/><ponto x="400" y="75.001"/></reta>
+
+    <!-- Grupo D: diagonais extremas atravessando cantos (muito recorte) -->
+    <reta cor="Light Blue"><ponto x="-500" y="-500"/><ponto x="500" y="500"/></reta>
+    <reta cor="Light Blue"><ponto x="-500" y="500"/><ponto x="500" y="-500"/></reta>
+    <reta cor="Light Blue"><ponto x="-500" y="-300"/><ponto x="500" y="300"/></reta>
+    <reta cor="Light Blue"><ponto x="-500" y="300"/><ponto x="500" y="-300"/></reta>
+
+    <!-- Polígono só para referência visual (o recorte de polígono não muda ao trocar CS/LB) -->
+    <poligono cor="Light Coral">
+        <ponto x="-140" y="-60"/><ponto x="0" y="120"/><ponto x="140" y="-60"/>
+    </poligono>
+</dados>
