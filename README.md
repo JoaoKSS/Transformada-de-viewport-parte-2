@@ -5,23 +5,23 @@ Um projeto de computação gráfica que implementa **algoritmos de recorte (clip
 ## 📸 Screenshots da Aplicação
 
 ### Tela Inicial
-![Tela Inicial](tela_inicial.png)
+![Tela Inicial](fotos/tela_inicial.png)
 *Interface principal com controles de navegação, zoom, rotação e seleção de algoritmos*
 
 ### Tela com Recorte
-![Tela com Recorte](tela_recorte.png)
+![Tela com Recorte](fotos/tela_recorte.png)
 *Visualização dos objetos após aplicação dos algoritmos de clipping*
 
 ### Display List
-![Display List](display_list.png)
+![Display List](fotos/display_list.png)
 *Tabela detalhada mostrando coordenadas em todos os sistemas (Mundo, PPC, Viewport)*
 
 ### Controles do Teclado
-![Controles do Teclado](controles_teclado.png)
+![Controles do Teclado](fotos/controles_teclado.png)
 *Informações sobre o projeto e instruções de uso*
 
 ### Gerar Saída XML
-![Gerar Saída XML](saida_xml.png)
+![Gerar Saída XML](fotos/saida_xml.png)
 *Geração de arquivo XML com coordenadas dos objetos após clipping*
 
 ## 📋 Descrição
@@ -53,11 +53,12 @@ CG2/
 ├── ideia_interface.ipynb              # Código principal (Jupyter Notebook)
 ├── entrada.xml                        # Arquivo de exemplo básico
 ├── teste.xml                          # Arquivo de teste com casos extremos
-├── tela_inicial.png                   # Screenshot da tela inicial
-├── tela_recorte.png                   # Screenshot da tela com recorte
-├── display_list.png                   # Screenshot do display list
-├── controles_teclado.png              # Screenshot dos controles do teclado
-├── saida_xml.png                      # Screenshot da geração de saída XML
+├── fotos/                            # Pasta com capturas de tela da aplicação
+│   ├── tela_inicial.png              # Screenshot da tela inicial
+│   ├── tela_recorte.png              # Screenshot da tela com recorte
+│   ├── display_list.png              # Screenshot do display list
+│   ├── controles_teclado.png         # Screenshot dos controles do teclado
+│   └── saida_xml.png                 # Screenshot da geração de saída XML
 ├── RELATÓRIO _ TRABALHO PRÁTICO 2.pdf # Relatório técnico completo
 └── README.md                          # Este arquivo
 ```
@@ -161,7 +162,7 @@ O sistema aceita arquivos XML com a seguinte estrutura:
 - **Radio buttons**: Seleção do algoritmo de clipping (Cohen-Sutherland / Liang-Barsky)
 - **Botão Display List**: Abrir tabela detalhada de coordenadas
 - **Botão Gerar Saída XML**: Exportar objetos após clipping para arquivo XML
-- **Botão Sobre**: Informações e instruções
+- **Botão Controles do teclado**: Abrir tela de instruções de teclado
 
 ## 🧮 Conceitos Implementados
 
