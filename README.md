@@ -1,42 +1,68 @@
-# Visualizador de Objetos 2D - Transformada de Viewport
+# Visualizador 2D com Algoritmos de Recorte (Clipping)
 
-Um projeto de computação gráfica que implementa a **Transformada de Viewport** para visualização de objetos geométricos 2D. O sistema permite carregar objetos a partir de arquivos XML e visualizá-los em uma interface gráfica interativa.
+Um projeto avançado de computação gráfica que implementa **algoritmos de recorte (clipping)** para visualização de objetos geométricos 2D. O sistema oferece uma pipeline completa de transformação geométrica com múltiplos algoritmos de clipping e uma interface interativa para navegação e análise.
 
-![Screenshot do Visualizador](image.png)
+## 📸 Screenshots da Aplicação
+
+### Tela Inicial
+![Tela Inicial](screenshots/tela_inicial.png)
+*Interface principal com controles de navegação, zoom, rotação e seleção de algoritmos*
+
+### Tela com Recorte
+![Tela com Recorte](screenshots/tela_recorte.png)
+*Visualização dos objetos após aplicação dos algoritmos de clipping*
+
+### Display List
+![Display List](screenshots/display_list.png)
+*Tabela detalhada mostrando coordenadas em todos os sistemas (Mundo, PPC, Viewport)*
+
+### Sobre
+![Tela Sobre](screenshots/sobre.png)
+*Informações sobre o projeto e instruções de uso*
 
 ## 📋 Descrição
 
-Este projeto implementa os conceitos fundamentais de computação gráfica relacionados à transformação de coordenadas do mundo (world coordinates) para coordenadas da viewport (viewport coordinates). O visualizador permite:
+Este projeto implementa uma **pipeline completa de transformação geométrica** com foco em **algoritmos de recorte (clipping)**. O sistema demonstra conceitos avançados de computação gráfica através de:
 
-- Carregar objetos geométricos 2D a partir de arquivos XML
-- Visualizar pontos, retas e polígonos
-- Navegar pela viewport usando as teclas direcionais
-- Visualizar um minimapa com a área atual em foco
-- Exibir a matriz de transformação 3x3 em tempo real
+### 🔧 Funcionalidades Principais
+- **Pipeline de Transformação**: Mundo → PPC → Clipping → Viewport → Desenho
+- **Algoritmos de Clipping para Linhas**: Cohen-Sutherland e Liang-Barsky (selecionáveis)
+- **Algoritmo de Clipping para Polígonos**: Weiler-Atherton
+- **Sistema de Coordenadas PPC**: Projeção Paralela Canônica com centro na origem
+- **Transformações Interativas**: Navegação, zoom e rotação em tempo real
+- **Display List Detalhado**: Visualização de coordenadas em todos os sistemas
+- **Interface Gráfica Avançada**: Controles intuitivos e feedback visual
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Python 3.x**
-- **Tkinter** - Interface gráfica
+- **Python 3.x** - Linguagem principal
+- **Tkinter** - Interface gráfica nativa
 - **xml.etree.ElementTree** - Parsing de arquivos XML
+- **math** - Operações matemáticas para transformações
+- **Jupyter Notebook** - Ambiente de desenvolvimento interativo
 
 ## 📁 Estrutura do Projeto
 
 ```
-CG1/
-├── ideia_interface.ipynb           # Código principal (Jupyter Notebook)
-├── entrada.xml                     # Arquivo de exemplo com objetos geométricos
-├── entrada_extra.xml               # Arquivo adicional com mais objetos para teste
-├── image.png                       # Screenshot da interface do visualizador
-├── RELATÓRIO_TRABALHO PRÁTICO 1.pdf  # Relatório técnico completo do projeto
-└── README.md                       # Este arquivo
+CG2/
+├── ideia_interface.ipynb              # Código principal (Jupyter Notebook)
+├── entrada.xml                        # Arquivo de exemplo básico
+├── teste.xml                          # Arquivo de teste com casos extremos
+├── screenshots/                       # Pasta com capturas de tela da aplicação
+│   ├── tela_inicial.png              # Screenshot da tela inicial
+│   ├── tela_recorte.png              # Screenshot da tela com recorte
+│   ├── display_list.png              # Screenshot do display list
+│   └── sobre.png                     # Screenshot da tela sobre
+├── RELATÓRIO _ TRABALHO PRÁTICO 2.pdf # Relatório técnico completo
+└── README.md                          # Este arquivo
 ```
 
 ## 🚀 Como Executar
 
 ### Pré-requisitos
-- Python 3.x instalado
-- Jupyter Notebook (opcional, para executar o notebook)
+- **Python 3.x** instalado
+- **Jupyter Notebook** ou **JupyterLab**
+- Bibliotecas padrão do Python (tkinter, xml, math)
 
 ### Executando o projeto
 
@@ -46,10 +72,15 @@ CG1/
    ```
    Execute a célula de código para iniciar a aplicação.
 
-2. **Via Python direto**:
+2. **Via JupyterLab**:
+   ```bash
+   jupyter lab ideia_interface.ipynb
+   ```
+
+3. **Via Python direto**:
    Extraia o código da célula Python do notebook e salve em um arquivo `.py`, então execute:
    ```bash
-   python visualizador.py
+   python visualizador_clipping.py
    ```
 
 ## 📋 Formato do Arquivo XML
@@ -67,23 +98,22 @@ O sistema aceita arquivos XML com a seguinte estrutura:
     
     <!-- Configuração da window (mundo) -->
     <window>
-        <wmin x="0.0" y="0.0"/>
-        <wmax x="10.0" y="7.5"/>
+        <wmin x="-100.0" y="-75.0"/>
+        <wmax x="100.0" y="75.0"/>
     </window>
 
-    <!-- Objetos geométricos -->
-    <ponto x="2" y="4"/>
+    <!-- Objetos geométricos com cores opcionais -->
+    <ponto cor="Light Coral" x="0" y="0"/>
     
-    <reta>
-        <ponto x="2" y="2"/>
-        <ponto x="4" y="4"/>
+    <reta cor="Teal">
+        <ponto x="-300" y="-200"/>
+        <ponto x="300" y="200"/>
     </reta>
     
-    <poligono>
-        <ponto x="1.0" y="1.0"/>
-        <ponto x="1.0" y="2.0"/>
-        <ponto x="2.0" y="2.0"/>
-        <ponto x="2.0" y="1.0"/>
+    <poligono cor="Green">
+        <ponto x="-140" y="-60"/>
+        <ponto x="0" y="120"/>
+        <ponto x="140" y="-60"/>
     </poligono>
 </dados>
 ```
@@ -94,103 +124,194 @@ O sistema aceita arquivos XML com a seguinte estrutura:
   - `vpmin`: Coordenada mínima (canto inferior esquerdo)
   - `vpmax`: Coordenada máxima (canto superior direito)
 
-- **`<window>`**: Define a área do mundo que será visualizada
+- **`<window>`**: Define a área do mundo que será visualizada inicialmente
   - `wmin`: Coordenada mínima do mundo
   - `wmax`: Coordenada máxima do mundo
 
 - **`<ponto>`**: Define um ponto com coordenadas `x` e `y`
+  - Atributo opcional `cor`: Define a cor do ponto
 
 - **`<reta>`**: Define uma linha com dois pontos
+  - Atributo opcional `cor`: Define a cor da linha
+  - Sujeita aos algoritmos de clipping Cohen-Sutherland ou Liang-Barsky
 
 - **`<poligono>`**: Define um polígono com três ou mais pontos
+  - Atributo opcional `cor`: Define a cor do polígono
+  - Sujeito ao algoritmo de clipping Weiler-Atherton
 
 ## 🎮 Controles
 
-- **↑ ↓ ← →**: Navegar pela viewport (mover a window)
+### Navegação
+- **↑ ↓ ← →**: Mover a window (navegar pela cena)
+- **+ / =**: Zoom in (aproximar)
+- **- / _**: Zoom out (afastar)
+- **< / ,**: Rotacionar para a esquerda
+- **> / .**: Rotacionar para a direita
+
+### Interface
 - **Menu Arquivo > Abrir**: Carregar um arquivo XML
+- **Botões de navegação**: Controles visuais para movimento
+- **Botões de zoom**: Controles visuais para zoom
+- **Botões de rotação**: Controles visuais para rotação
+- **Radio buttons**: Seleção do algoritmo de clipping (Cohen-Sutherland / Liang-Barsky)
+- **Botão Display List**: Abrir tabela detalhada de coordenadas
+- **Botão Sobre**: Informações e instruções
 
 ## 🧮 Conceitos Implementados
 
-### Transformada de Viewport
+### Pipeline de Transformação Geométrica
 
-A transformação de coordenadas do mundo para a viewport é implementada através de uma matriz 3x3:
+O sistema implementa uma pipeline completa de transformação:
 
-```
-M = [sx   0   vpxmin - sx * wxmin  ]
-    [0   -sy  vpymin + sy * wymax ]
-    [0    0   1.0                 ]
-```
+**Mundo → PPC → Clipping → Viewport → Desenho**
 
-Onde:
-- `sx = (vpxmax - vpxmin) / (wxmax - wxmin)` - Fator de escala em X
-- `sy = (vpymax - vpymin) / (wymax - wymin)` - Fator de escala em Y
-- O sinal negativo em `sy` inverte o eixo Y para coordenadas de tela
+#### 1. Transformação Mundo → PPC (Projeção Paralela Canônica)
+- Translação para centralizar a window na origem
+- Rotação baseada no ângulo atual
+- Normalização para o sistema PPC [-w/2, w/2] × [-h/2, h/2]
+
+#### 2. Algoritmos de Clipping no PPC
+
+**Para Linhas:**
+- **Cohen-Sutherland**: Algoritmo baseado em códigos de região
+- **Liang-Barsky**: Algoritmo paramétrico mais eficiente
+
+**Para Polígonos:**
+- **Weiler-Atherton**: Algoritmo avançado para clipping de polígonos
+
+#### 3. Transformação PPC → Viewport
+- Mapeamento das coordenadas PPC normalizadas para pixels da tela
+- Inversão do eixo Y para coordenadas de tela
 
 ### Componentes da Interface
 
-1. **Viewport Principal**: Área principal onde os objetos são renderizados
-2. **Minimapa**: Visão geral dos objetos com indicação da área atual em foco
-3. **Exibição da Matriz**: Mostra a matriz de transformação atual no canto superior esquerdo
+1. **Viewport Principal**: Área de renderização dos objetos após clipping
+2. **Painel de Controles**: Navegação, zoom, rotação e seleção de algoritmos
+3. **Display List**: Tabela detalhada com coordenadas em todos os sistemas
+4. **Informações em Tempo Real**: Algoritmo atual, posição da window, ângulo de rotação
 
 ## 📊 Funcionalidades
 
-- ✅ Carregamento de arquivos XML
-- ✅ Renderização de pontos, retas e polígonos
-- ✅ Navegação interativa com teclas direcionais
-- ✅ Minimapa com área de foco
-- ✅ Exibição da matriz de transformação
-- ✅ Redimensionamento automático da viewport baseado no arquivo
+### ✅ Algoritmos de Clipping
+- **Cohen-Sutherland** para linhas (baseado em códigos de região)
+- **Liang-Barsky** para linhas (algoritmo paramétrico)
+- **Weiler-Atherton** para polígonos (clipping avançado)
+- Seleção dinâmica entre algoritmos de linha
+
+### ✅ Pipeline de Transformação
+- Transformação Mundo → PPC com rotação
+- Clipping no sistema PPC
+- Transformação PPC → Viewport
+- Renderização final na tela
+
+### ✅ Interface Interativa
+- Navegação em tempo real (teclas e botões)
+- Zoom in/out com limites inteligentes
+- Rotação contínua da cena
+- Carregamento de arquivos XML
+- Display List detalhado com coordenadas
+
+### ✅ Visualização Avançada
+- Cores personalizáveis para objetos
+- Feedback visual do algoritmo em uso
+- Informações de posição e rotação em tempo real
+- Suporte a objetos complexos e casos extremos
 
 ## 🔧 Estrutura do Código
 
 ### Classe Principal: `Visualizador`
 
-- **`__init__`**: Inicializa a interface gráfica e configurações
-- **`abrir_arquivo`**: Abre diálogo para seleção de arquivo XML
-- **`carregar_arquivo`**: Faz o parsing do XML e configura os objetos
-- **`window2viewport`**: Aplica a transformada de viewport a um ponto
-- **`desenhar_viewport`**: Renderiza os objetos na viewport principal
-- **`desenhar_minimapa`**: Renderiza o minimapa
-- **`_mover_e_recarregar`**: Move a window e atualiza a visualização
+#### Inicialização e Interface
+- **`__init__`**: Configura interface gráfica e variáveis de estado
+- **`abrir_arquivo`**: Diálogo para seleção de arquivo XML
+- **`carregar_arquivo`**: Parser XML e configuração inicial
+
+#### Pipeline de Transformação
+- **`world_to_ppc`**: Transformação Mundo → PPC com rotação
+- **`ppc_to_viewport`**: Transformação PPC → Viewport
+- **`realizar_clipping`**: Aplica clipping a todos os objetos
+
+#### Algoritmos de Clipping
+- **`clip_reta_cohen_sutherland`**: Implementação Cohen-Sutherland
+- **`clip_reta_liang_barsky`**: Implementação Liang-Barsky
+- **`clip_poligono_weiler_atherton`**: Implementação Weiler-Atherton
+- **`calcular_region_code`**: Códigos de região para Cohen-Sutherland
+
+#### Controles Interativos
+- **`_mover_e_recarregar`**: Navegação pela cena
+- **`_zoom`**: Zoom in/out com limites
+- **`_rotacionar`**: Rotação da cena
+- **`_atualizar_algoritmo`**: Troca de algoritmo de clipping
+
+#### Visualização
+- **`desenhar_viewport`**: Renderização principal
+- **`atualizar_displaylist`**: Atualização da tabela de coordenadas
+- **`mostrar_sobre`**: Janela de informações
 
 ## 🎯 Exemplo de Uso
 
-1. Execute a aplicação
-2. Use "Arquivo > Abrir" para carregar um dos arquivos de exemplo:
-   - `entrada.xml` - Exemplo básico com poucos objetos
-   - `entrada_extra.xml` - Exemplo mais complexo com diversos objetos e um polígono grande
-3. Use as setas do teclado para navegar pela cena
-4. Observe como a matriz de transformação muda conforme você navega
-5. O retângulo vermelho no minimapa mostra a área atual em foco
+### Fluxo Básico
+1. **Execute a aplicação** via Jupyter Notebook
+2. **Carregue um arquivo XML** usando "Arquivo > Abrir"
+3. **Selecione o algoritmo de clipping** (Cohen-Sutherland ou Liang-Barsky)
+4. **Navegue pela cena** usando setas ou botões
+5. **Experimente zoom e rotação** para ver o clipping em ação
+6. **Abra o Display List** para ver coordenadas detalhadas
+7. **Compare algoritmos** alternando entre Cohen-Sutherland e Liang-Barsky
 
 ### Arquivos de Exemplo Disponíveis
 
-- **`entrada.xml`**: Arquivo de demonstração básico contendo:
-  - 3 pontos simples
-  - 3 retas
-  - 2 polígonos (quadrado e triângulo)
-  - Window de 10.0 x 7.5 unidades
+#### `entrada.xml` - Exemplo Básico
+- Objetos simples para demonstração inicial
+- Window pequena para visualização clara
+- Ideal para entender os conceitos básicos
 
-- **`entrada_extra.xml`**: Arquivo de teste mais abrangente contendo:
-  - 3 pontos distribuídos pela cena
-  - 2 retas diagonais
-  - 3 polígonos incluindo um grande que atravessa toda a cena
-  - Window de 20 x 15 unidades para demonstrar navegação
+#### `teste.xml` - Casos Extremos
+- **Stress test** com muitas linhas longas
+- **Casos limítrofes**: linhas paralelas às bordas
+- **Precisão numérica**: linhas quase colineares
+- **Diagonais extremas**: atravessando cantos
+- **Window ampla** (-100 a 100 em X, -75 a 75 em Y)
+- Ideal para testar robustez dos algoritmos
+
+### Dicas de Uso
+- Use **zoom** para focar em áreas específicas e ver detalhes do clipping
+- **Rotacione** a cena para ver como os algoritmos se comportam em diferentes orientações
+- **Compare algoritmos** em tempo real para entender diferenças de performance
+- **Analise o Display List** para entender as transformações de coordenadas
 
 ## 📚 Conceitos de Computação Gráfica
 
-Este projeto demonstra conceitos fundamentais como:
+Este projeto demonstra conceitos avançados de computação gráfica:
 
-- **Sistema de Coordenadas**: Transformação entre coordenadas do mundo e da tela
-- **Viewport Transformation**: Mapeamento de uma região do mundo para a tela
-- **Matriz de Transformação**: Representação matemática das transformações
-- **Clipping implícito**: Objetos fora da viewport não são exibidos
-- **Rendering 2D**: Desenho de primitivas geométricas
+### Algoritmos de Clipping
+- **Cohen-Sutherland**: Eficiente para casos simples, baseado em códigos de região
+- **Liang-Barsky**: Mais eficiente para casos complexos, baseado em equações paramétricas
+- **Weiler-Atherton**: Algoritmo sofisticado para clipping de polígonos
 
-## 📄 Licença
+### Pipeline de Transformação
+- **Sistema de Coordenadas Múltiplos**: Mundo, PPC, Viewport
+- **Projeção Paralela Canônica (PPC)**: Normalização para clipping eficiente
+- **Transformações Geométricas**: Translação, rotação, escala
+- **Homogeneização**: Uso de coordenadas homogêneas para transformações
 
-Este projeto é desenvolvido para fins educacionais em computação gráfica.
+### Técnicas Avançadas
+- **Clipping no PPC**: Otimização através de normalização
+- **Códigos de Região**: Classificação rápida de pontos
+- **Algoritmos Paramétricos**: Cálculo eficiente de interseções
+- **Robustez Numérica**: Tratamento de casos limítrofes
 
----
+### Interface e Visualização
+- **Rendering em Tempo Real**: Atualização dinâmica da visualização
+- **Display List**: Estrutura de dados para análise detalhada
+- **Feedback Visual**: Indicação do algoritmo e estado atual
 
-**Desenvolvido como parte do estudo de Computação Gráfica - Transformada de Viewport**
+## 🎓 Objetivos Educacionais
+
+Este projeto foi desenvolvido para demonstrar:
+
+- **Implementação prática** de algoritmos clássicos de clipping
+- **Comparação de performance** entre diferentes algoritmos
+- **Pipeline completa** de transformação geométrica
+- **Tratamento de casos extremos** e robustez numérica
+- **Interface interativa** para experimentação e aprendizado
