@@ -1,6 +1,6 @@
 # Visualizador 2D com Algoritmos de Recorte (Clipping)
 
-Um projeto avançado de computação gráfica que implementa **algoritmos de recorte (clipping)** para visualização de objetos geométricos 2D. O sistema oferece uma pipeline completa de transformação geométrica com múltiplos algoritmos de clipping e uma interface interativa para navegação e análise.
+Um projeto de computação gráfica que implementa **algoritmos de recorte (clipping)** para visualização de objetos geométricos 2D. O sistema oferece uma pipeline completa de transformação geométrica com múltiplos algoritmos de clipping e uma interface interativa para navegação e análise.
 
 ## 📸 Screenshots da Aplicação
 
@@ -16,8 +16,8 @@ Um projeto avançado de computação gráfica que implementa **algoritmos de rec
 ![Display List](screenshots/display_list.png)
 *Tabela detalhada mostrando coordenadas em todos os sistemas (Mundo, PPC, Viewport)*
 
-### Sobre
-![Tela Sobre](screenshots/sobre.png)
+### Controles do Teclado
+![Controles do Teclado](screenshots/controles_teclado.png)
 *Informações sobre o projeto e instruções de uso*
 
 ## 📋 Descrição
@@ -315,3 +315,13 @@ Este projeto foi desenvolvido para demonstrar:
 - **Pipeline completa** de transformação geométrica
 - **Tratamento de casos extremos** e robustez numérica
 - **Interface interativa** para experimentação e aprendizado
+
+## 📄 Licença
+
+Este projeto é desenvolvido para fins educacionais em computação gráfica.
+
+---
+
+**Desenvolvido como parte do estudo de Computação Gráfica - Algoritmos de Recorte (Clipping)**
+
+**Trabalho Prático 2 - Implementação de Algoritmos de Clipping**
