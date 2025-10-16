@@ -5,20 +5,24 @@ Um projeto de computação gráfica que implementa **algoritmos de recorte (clip
 ## 📸 Screenshots da Aplicação
 
 ### Tela Inicial
-![Tela Inicial](screenshots/tela_inicial.png)
+![Tela Inicial](tela_inicial.png)
 *Interface principal com controles de navegação, zoom, rotação e seleção de algoritmos*
 
 ### Tela com Recorte
-![Tela com Recorte](screenshots/tela_recorte.png)
+![Tela com Recorte](tela_recorte.png)
 *Visualização dos objetos após aplicação dos algoritmos de clipping*
 
 ### Display List
-![Display List](screenshots/display_list.png)
+![Display List](display_list.png)
 *Tabela detalhada mostrando coordenadas em todos os sistemas (Mundo, PPC, Viewport)*
 
 ### Controles do Teclado
-![Controles do Teclado](screenshots/controles_teclado.png)
+![Controles do Teclado](controles_teclado.png)
 *Informações sobre o projeto e instruções de uso*
+
+### Gerar Saída XML
+![Gerar Saída XML](saida_xml.png)
+*Geração de arquivo XML com coordenadas dos objetos após clipping*
 
 ## 📋 Descrição
 
@@ -31,6 +35,7 @@ Este projeto implementa uma **pipeline completa de transformação geométrica**
 - **Sistema de Coordenadas PPC**: Projeção Paralela Canônica com centro na origem
 - **Transformações Interativas**: Navegação, zoom e rotação em tempo real
 - **Display List Detalhado**: Visualização de coordenadas em todos os sistemas
+- **Geração de Saída XML**: Exportação dos objetos após clipping
 - **Interface Gráfica Avançada**: Controles intuitivos e feedback visual
 
 ## 🛠️ Tecnologias Utilizadas
@@ -48,11 +53,11 @@ CG2/
 ├── ideia_interface.ipynb              # Código principal (Jupyter Notebook)
 ├── entrada.xml                        # Arquivo de exemplo básico
 ├── teste.xml                          # Arquivo de teste com casos extremos
-├── screenshots/                       # Pasta com capturas de tela da aplicação
-│   ├── tela_inicial.png              # Screenshot da tela inicial
-│   ├── tela_recorte.png              # Screenshot da tela com recorte
-│   ├── display_list.png              # Screenshot do display list
-│   └── sobre.png                     # Screenshot da tela sobre
+├── tela_inicial.png                   # Screenshot da tela inicial
+├── tela_recorte.png                   # Screenshot da tela com recorte
+├── display_list.png                   # Screenshot do display list
+├── controles_teclado.png              # Screenshot dos controles do teclado
+├── saida_xml.png                      # Screenshot da geração de saída XML
 ├── RELATÓRIO _ TRABALHO PRÁTICO 2.pdf # Relatório técnico completo
 └── README.md                          # Este arquivo
 ```
@@ -155,6 +160,7 @@ O sistema aceita arquivos XML com a seguinte estrutura:
 - **Botões de rotação**: Controles visuais para rotação
 - **Radio buttons**: Seleção do algoritmo de clipping (Cohen-Sutherland / Liang-Barsky)
 - **Botão Display List**: Abrir tabela detalhada de coordenadas
+- **Botão Gerar Saída XML**: Exportar objetos após clipping para arquivo XML
 - **Botão Sobre**: Informações e instruções
 
 ## 🧮 Conceitos Implementados
@@ -210,6 +216,7 @@ O sistema implementa uma pipeline completa de transformação:
 - Rotação contínua da cena
 - Carregamento de arquivos XML
 - Display List detalhado com coordenadas
+- Geração de saída XML com objetos após clipping
 
 ### ✅ Visualização Avançada
 - Cores personalizáveis para objetos
@@ -315,13 +322,3 @@ Este projeto foi desenvolvido para demonstrar:
 - **Pipeline completa** de transformação geométrica
 - **Tratamento de casos extremos** e robustez numérica
 - **Interface interativa** para experimentação e aprendizado
-
-## 📄 Licença
-
-Este projeto é desenvolvido para fins educacionais em computação gráfica.
-
----
-
-**Desenvolvido como parte do estudo de Computação Gráfica - Algoritmos de Recorte (Clipping)**
-
-**Trabalho Prático 2 - Implementação de Algoritmos de Clipping**
