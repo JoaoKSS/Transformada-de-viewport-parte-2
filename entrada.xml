@@ -17,12 +17,12 @@
 	<ponto cor="Light Coral" x="2" y="4"/>
 	<ponto cor="Light Coral" x="4" y="6"/>
 
-	<reta cor="Light Blue">
+	<reta cor="Blue">
 		<ponto x="2" y="2"/>
 		<ponto x="4" y="4"/>
 	</reta>
 
-	<reta cor="Light Blue">
+	<reta cor="Blue">
 		<ponto x="4" y="4"/>
 		<ponto x="2" y="6"/>
 	</reta>
